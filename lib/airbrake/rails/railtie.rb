@@ -131,14 +131,6 @@ module Airbrake
         end
       end
 
-      initializer('airbrake.active_job') do
-        ActiveSupport.on_load(:active_job, run_once: true) do
-          # Reports exceptions occurring in ActiveJob jobs.
-          require 'airbrake/rails/active_job'
-          include Airbrake::Rails::ActiveJob
-        end
-      end
-
       initializer('airbrake.action_cable') do
         ActiveSupport.on_load(:action_cable, run_once: true) do
           # Reports exceptions occurring in ActionCable connections.
